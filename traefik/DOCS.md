@@ -13,13 +13,15 @@ Follow these steps to get the add-on installed on your system:
 
 ## How to use
 
-In the configuration section you will need to set the required configuration path. This can be a directory within your Home Assistant config or Hass.io share directories, since both are read-only mounted on this add-on.
+In the configuration section you will need to set the required configuration path. This can be a directory within your Home Assistant config, which is mounted read-only by this add-on. See the configuration `dynamic_configuration_path`.
 
 Any Traefik endpoint configuration you put in there will be automatically picked up by this add-on. Updates will also be automatically processed by Traefik.
 
 You can also enable Let's Encrypt support within the configuration and set additional environment variables when those are needed.
 
 This add-on provides two Traefik entrypoints. `web` on port 80 and `web-secure` on port 443.
+
+The dashboard can be accessed using port 8080.
 
 ### Example dynamic Traefik configuration
 
@@ -106,6 +108,10 @@ Enables insecure forwarding headers. When this option is enabled, the forwarded 
 
 > ___Note__ for Cloudflare `X-Forwarded-*` proxied headers to work, this must be enabled._
 
+### Option `insecure_skip_verify` (required)
+
+Enables `serverTransports.insecureSkipVerify`. This option disables SSL certificate verification.
+
 ### Option `dynamic_configuration_path` (required)
 
 Path to the directory with the dynamic endpoint configuration. See the example above. 
@@ -133,6 +139,10 @@ For more information on challange types and which one to choose, please see the 
 ### Option `letsencrypt.provider`
 
 When using the `dnsChallange` you will also need to set a provider to use. The list of providers can be found in the [Let's Encrypt provider section](https://docs.traefik.io/https/acme/#providers) of the Traefik documentation.
+
+### Option `letsencrypt.ca_server`
+
+Explicitly set the Let's Encrypt server to use.
 
 ### Option `letsencrypt.delayBeforeCheck`
 

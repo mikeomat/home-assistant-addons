@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bashio
 
-bashio::log.info "Ensuring SSL directory..."
+bashio::log.info "Ensuring SSL directory exists..."
 mkdir -p /ssl/traefik/
 
 bashio::log.info "Generating static config..."

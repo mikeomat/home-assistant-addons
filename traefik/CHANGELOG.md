@@ -1,5 +1,10 @@
 # Changelog
 
+## 5.0.0
+* 📈 Updated Traefik to 3.2.1
+* 📈 Updated Home-Assistant addon-base image to 17.0.0
+* 🆕 Added new options
+
 ## 4.2.2
 * 🐞 Hotfix for update 4.2.1 (#50)
 

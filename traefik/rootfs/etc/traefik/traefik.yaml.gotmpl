@@ -10,8 +10,13 @@ global:
 entryPoints:
   web:
     address: ":80"
+    http:
+      redirections:
+        entryPoint:
+          to: web-secure
+          scheme: https
   web-secure:
-    address: ":443"
+    address: ":443" 
 {{- if has $options "forwarded_headers_insecure" }}
     forwardedHeaders:
       insecure: {{ $options.forwarded_headers_insecure }}
@@ -21,12 +26,20 @@ api:
   dashboard: true
   insecure: true
 
+{{- if has $options "insecure_skip_verify" }}
+serversTransport:
+  insecureSkipVerify: true
+{{- end }}
+
 {{ if and (has $options "letsencrypt") ($options.letsencrypt.enabled) -}}
 certificatesResolvers:
-  le:
+  letsencrypt:
     acme:
       email: "{{ $options.letsencrypt.email }}"
       storage: "/ssl/traefik/acme.json"
+  {{- if has $options.letsencrypt "ca_server" }}
+      caServer: {{ $options.letsencrypt.ca_server}}
+  {{- end }}
   {{- if or (not (has $options.letsencrypt "challenge_type")) (eq $options.letsencrypt.challenge_type "tlsChallenge") }}
       tlsChallenge: {}
   {{- else if eq $options.letsencrypt.challenge_type "httpChallenge" }}
