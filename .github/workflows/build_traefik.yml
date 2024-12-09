@@ -28,5 +28,5 @@ jobs:
             --test \
             --all \
             --target /data/${ADD_ON_DIRECTORY} \
-            --docker-hub alex3305 \
+            --docker-hub RedX2501 \
             --image ${ADD_ON_DIRECTORY}-add-on
