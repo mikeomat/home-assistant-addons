@@ -16,7 +16,7 @@ startup: system
 init: false
 stage: stable
 boot: auto
-url: https://www.github.com/RedX2501/home-assistant-addons/tree/master/traefik
+url: https://github.com/mikeomat/home-assistant-addons/blob/master/traefik
 ports:
   80/tcp: 80
   443/tcp: 443
